@@ -34,6 +34,13 @@
       "priority": "medium",
       "user_email": "mario@netninja.dev",
       "id": "V4fezfm"
+    },
+    {
+      "title": "merhaba ticket",
+      "body": "ey ticket merhaba nasılsın? Bak bugün senin günün yazıyorum buraya.",
+      "priority": "medium",
+      "user_email": "mario@netninja.dev",
+      "id": "t1qxoYn"
     }
   ]
 }
