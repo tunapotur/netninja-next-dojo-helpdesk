@@ -14,6 +14,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
+//Nextjs Function nextjs tarahfından bu fonksiyon görüldüğünde veriler hazırlanıyor
 export async function generateStaticParams() {
   const res = await fetch("http://localhost:4000/tickets");
 
