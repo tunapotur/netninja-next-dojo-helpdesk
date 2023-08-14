@@ -1,5 +1,4 @@
-import React from "react";
-import Link from "next/link";
+import Link from "next/link"
 
 export default function NotFound() {
   return (
@@ -8,5 +7,5 @@ export default function NotFound() {
       <p>We could not find the ticket you were looking for.</p>
       <p>Go back to all <Link href="/tickets">tickets</Link>.</p>
     </main>
-  );
+  )
 }
