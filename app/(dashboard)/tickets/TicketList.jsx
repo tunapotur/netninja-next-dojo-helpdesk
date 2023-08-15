@@ -1,20 +1,21 @@
-import Link from "next/link"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import Link from "next/link";
 
 async function getTickets() {
-  const res = await fetch('http://localhost:4000/tickets', {
-    next: {
-      // aysı sayfa içinde 30 saniyede bir çekilecek veriyi güncelleyecek
-      // 30 saniye içinde veri değişse bile cache'den eski veri gelecek
-      // revalidate: 30,
-      revalidate: 0, // use 0 to opt out of using cache
-    },
-  });
+  const supabase = createServerComponentClient({ cookies });
 
-  return res.json()
+  const { data, error } = await supabase.from("tickets").select();
+
+  if (error) {
+    console.log(error);
+  }
+
+  return data;
 }
 
 export default async function TicketList() {
-  const tickets = await getTickets()
+  const tickets = await getTickets();
 
   return (
     <>
@@ -33,5 +34,5 @@ export default async function TicketList() {
         <p className="text-center">There are no open tickets, yay!</p>
       )}
     </>
-  )
+  );
 }

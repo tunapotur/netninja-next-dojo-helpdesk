@@ -1,14 +1,14 @@
-import Link from "next/link"
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default async function AuthLayout({ children }) {
-  const supabase = createServerComponentClient({ cookies })
-  const { data } = await supabase.auth.getSession()
+  const supabase = createServerComponentClient({ cookies });
+  const { data } = await supabase.auth.getSession();
 
   if (data.session) {
-    redirect('/')
+    redirect("/");
   }
 
   return (
@@ -20,5 +20,5 @@ export default async function AuthLayout({ children }) {
       </nav>
       {children}
     </>
-  )
+  );
 }

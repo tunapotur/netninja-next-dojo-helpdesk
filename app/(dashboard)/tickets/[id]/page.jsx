@@ -1,53 +1,57 @@
-import { notFound } from "next/navigation"
+import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
-export const dynamicParams = true // default val = true
+// components
+import DeleteButton from "./DeleteButton";
 
-// Nextjs Function nextjs tarahfından bu fonksiyon görüldüğünde bu safyanın meta datasını değiştiriyor.
+export const dynamicParams = true;
+
 export async function generateMetadata({ params }) {
-  const id = params.id
+  const supabase = createServerComponentClient({ cookies });
 
-  const res = await fetch(`http://localhost:4000/tickets/${id}`)
-  const ticket = await res.json()
- 
+  const { data: ticket } = await supabase
+    .from("tickets")
+    .select()
+    .eq("id", params.id)
+    .single();
+
   return {
-    title: `Dojo Helpdesk | ${ticket.title}`
-  }
-}
-
-//Nextjs Function nextjs tarahfından bu fonksiyon görüldüğünde veriler hazırlanıyor
-export async function generateStaticParams() {
-  const res = await fetch('http://localhost:4000/tickets')
-
-  const tickets = await res.json()
- 
-  return tickets.map((ticket) => ({
-    id: ticket.id
-  }))
+    title: `Dojo Helpdesk | ${ticket?.title || "Ticket not Found"}`,
+  };
 }
 
 async function getTicket(id) {
-  const res = await fetch(`http://localhost:4000/tickets/${id}`, {
-    next: {
-      revalidate: 60
-    }
-  })
+  const supabase = createServerComponentClient({ cookies });
 
-  if (!res.ok) {
-    notFound()
+  const { data } = await supabase
+    .from("tickets")
+    .select()
+    .eq("id", id)
+    .single();
+
+  if (!data) {
+    notFound();
   }
 
-  return res.json()
+  return data;
 }
 
-
 export default async function TicketDetails({ params }) {
-  // const id = params.id
-  const ticket = await getTicket(params.id)
+  const ticket = await getTicket(params.id);
+
+  const supabase = createServerComponentClient({ cookies });
+  const { data } = await supabase.auth.getSession();
 
   return (
     <main>
       <nav>
         <h2>Ticket Details</h2>
+        <div className="ml-auto">
+          {data.session.user.email === ticket.user_email && (
+            <DeleteButton id={ticket.id} />
+          )}
+        </div>
       </nav>
       <div className="card">
         <h3>{ticket.title}</h3>
@@ -58,5 +62,5 @@ export default async function TicketDetails({ params }) {
         </div>
       </div>
     </main>
-  )
+  );
 }
