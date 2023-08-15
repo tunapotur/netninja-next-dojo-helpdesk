@@ -20,34 +20,6 @@
       "body": "Lorem ipsum Triforce sit amet, Linkus Hyruleus tempus Ganondorf. Nunc ocarina sagittis quis Majoras Mask. Nulla in metus arcu. Suspendisse potenti. In vel mauris varius, consectetur Zora ipsum eget, Master Sword porttitor urna. Fusce elementum urna elit, eget eleifend velit consectetur eget. Integer vel lobortis ipsum, vitae auctor Ocarina of Time. Donec sed urna dapibus, interdum magna a, eleifend magna. Curabitur tincidunt enim a neque volutpat. Phasellus auctor magna vel nunc pretium, ut volutpat justo tristique. Pellentesque cursus convallis mauris, in tempus enim tincidunt vitae.",
       "priority": "high",
       "user_email": "peach@netninja.dev"
-    },
-    {
-      "title": "deneme girişi",
-      "body": "bu giriş acaba nereye girilecek bakalım",
-      "priority": "medium",
-      "user_email": "mario@netninja.dev",
-      "id": "fIz-Ff3"
-    },
-    {
-      "title": "merhaba deneme",
-      "body": "deneme girişi yapıyorum merhaba",
-      "priority": "medium",
-      "user_email": "mario@netninja.dev",
-      "id": "V4fezfm"
-    },
-    {
-      "title": "merhaba ticket",
-      "body": "ey ticket merhaba nasılsın? Bak bugün senin günün yazıyorum buraya.",
-      "priority": "medium",
-      "user_email": "mario@netninja.dev",
-      "id": "t1qxoYn"
-    },
-    {
-      "title": "testing",
-      "body": "blah blah blah",
-      "user_email": "luigi@netninja.dev",
-      "priority": "high",
-      "id": "oQMD0Ts"
     }
   ]
 }
