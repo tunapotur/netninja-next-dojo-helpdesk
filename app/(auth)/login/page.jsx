@@ -27,7 +27,6 @@ export default function Login() {
       router.push("/");
     }
   };
-  [];
   return (
     <main>
       <h2 className="text-center">Login</h2>
